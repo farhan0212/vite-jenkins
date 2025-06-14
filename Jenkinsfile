@@ -8,6 +8,7 @@ pipeline {
             agent{
                 docker {
                     image 'node:22-alpine'
+                    reuseNode true
                 }
             }
             steps{
@@ -17,6 +18,14 @@ pipeline {
                     hello.npm_install()
                 }
             }
+        }
+    }
+    post{
+        always {
+            cleanWs(cleanWhenSuccess: true)
+        }
+        success {
+            echo(message: 'success')
         }
     }
 }
