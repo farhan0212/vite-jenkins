@@ -4,7 +4,7 @@ pipeline {
     agent any
 
     environment{
-        IMAGE_NAME = 'jenkins_vite_shared'
+        IMAGE_NAME = "jenkins_vite_shared"
     }
     
     stages{
