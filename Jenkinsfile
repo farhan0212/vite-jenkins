@@ -8,6 +8,8 @@ pipeline {
             steps{
                 script {
                     hello.world()
+                    echo('installing from shared library')
+                    hello.npm_install()
                 }
             }
         }
