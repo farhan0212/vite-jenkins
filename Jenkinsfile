@@ -13,7 +13,7 @@ pipeline {
             }
             steps{
                 script {
-                    hello.npm_do(["install", "build", "test"])
+                    hello.npm_do()
                 }
             }
         }
