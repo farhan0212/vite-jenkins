@@ -13,9 +13,7 @@ pipeline {
             }
             steps{
                 script {
-                    hello.world()
-                    echo('installing from shared library')
-                    hello.npm_install()
+                    hello.npm_do(["install", "build", "test"])
                 }
             }
         }
