@@ -23,7 +23,9 @@ pipeline {
         }
         stage("Build Docker Image"){
             steps{
-                hello.docker_build(IMAGE_NAME, env.BUILD_NUMBER)
+                script {
+                    hello.docker_build(IMAGE_NAME, env.BUILD_NUMBER)
+                }
             }
         }
     }
