@@ -12,17 +12,10 @@ pipeline {
     }
     
     stages{
-        stage ("Build Docker Image"){
-            steps{
-                script {        
-                    docker.docker_build(IMAGE_NAME, env.BUILD_NUMBER)
-                }
-            }
-        }
-        stage ("push registry"){
+        stage ("build and push registry"){
             steps{
                 script {
-                    docker.dockerhub_push(DOCKERHUB_CREDENTIALS, IMAGE_NAME, env.BUILD_NUMBER)
+                    docker(DOCKERHUB_CREDENTIALS, IMAGE_NAME, env.BUILD_NUMBER)
                 }
             }
         }
