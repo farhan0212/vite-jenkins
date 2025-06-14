@@ -4,14 +4,38 @@ pipeline {
     agent any
 
     environment{
-        IMAGE_NAME = "jenkins_vite_shared"
+        IMAGE_NAME = 'jenkins_vite_shared'
+        SSH_CREDENTIALS_ID = 'ssh-server'
+        SSH_HOST = '159.223.95.88'
+        SSH_USERNAME = 'github'
+        DOCKERHUB_CREDENTIALS = 'Docker'
     }
     
     stages{
-        stage("Build Docker Image"){
+        stage ("hello world") {
+            agent{
+                docker {
+                    image 'node:22-alpine'
+                    reuseNode true
+                }
+            }
             steps{
                 script {
-                    hello.docker_build(IMAGE_NAME, env.BUILD_NUMBER)
+                    hello.npm_do()
+                }
+            }
+        }
+        stage ("Build Docker Image"){
+            steps{
+                script {        
+                    docker.docker_build(IMAGE_NAME, env.BUILD_NUMBER)
+                }
+            }
+        }
+        stage ("push registry"){
+            steps{
+                script {
+                    docker.dockerhub_push(DOCKERHUB_CREDENTIALS, IMAGE_NAME, env.BUILD_NUMBER)
                 }
             }
         }
