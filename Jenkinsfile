@@ -8,19 +8,6 @@ pipeline {
     }
     
     stages{
-        stage ("hello world") {
-            agent{
-                docker {
-                    image 'node:22-alpine'
-                    reuseNode true
-                }
-            }
-            steps{
-                script {
-                    hello.npm_do()
-                }
-            }
-        }
         stage("Build Docker Image"){
             steps{
                 script {
