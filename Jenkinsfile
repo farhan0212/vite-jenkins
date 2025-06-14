@@ -5,6 +5,11 @@ pipeline {
     
     stages{
         stage ("hello world") {
+            agent{
+                docker {
+                    image 'node:22-alpine'
+                }
+            }
             steps{
                 script {
                     hello.world()
