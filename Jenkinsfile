@@ -2,6 +2,10 @@
 
 pipeline {
     agent any
+
+    environment{
+        IMAGE_NAME = 'jenkins_vite_shared'
+    }
     
     stages{
         stage ("hello world") {
@@ -15,6 +19,11 @@ pipeline {
                 script {
                     hello.npm_do()
                 }
+            }
+        }
+        stage("Build Docker Image"){
+            steps{
+                hello.docker_build(IMAGE_NAME, env.BUILD_NUMBER)
             }
         }
     }
