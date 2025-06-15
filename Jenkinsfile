@@ -4,7 +4,7 @@ pipeline {
     agent any
 
     environment{
-        IMAGE_NAME = 'jenkins_vite_shared'
+        IMAGE_NAME = 'farhan0212/jenkins_vite_shared'
         SSH_CREDENTIALS_ID = 'ssh-server'
         SSH_HOST = '159.223.95.88'
         SSH_USERNAME = 'github'
