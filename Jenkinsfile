@@ -12,13 +12,6 @@ pipeline {
     }
     
     stages{
-        stage ("hello ") {
-            steps{
-                script {
-                    dockerHelper.hello()
-                }
-            }
-        }
         stage ("build and push registry"){
             steps{
                 script {
@@ -29,7 +22,7 @@ pipeline {
         stage ("ssh action") {
             steps{
                 script {
-                    dockerHelper.ssh_action(SSH_CREDENTIALS_ID, SSH_USERNAME, SSH_HOST)
+                    sshHelper.ssh_action(SSH_CREDENTIALS_ID, SSH_USERNAME, SSH_HOST)
                 }
             }
         }
