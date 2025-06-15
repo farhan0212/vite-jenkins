@@ -22,7 +22,7 @@ pipeline {
         stage ("build and push registry"){
             steps{
                 script {
-                    dockerHelper(DOCKERHUB_CREDENTIALS, IMAGE_NAME, env.BUILD_NUMBER)
+                    dockerHelper.docker_build_push(DOCKERHUB_CREDENTIALS, IMAGE_NAME, env.BUILD_NUMBER)
                 }
             }
         }
