@@ -12,6 +12,13 @@ pipeline {
     }
     
     stages{
+        stage ("hello ") {
+            steps{
+                script {
+                    dockerHelper.hello()
+                }
+            }
+        }
         stage ("build and push registry"){
             steps{
                 script {
