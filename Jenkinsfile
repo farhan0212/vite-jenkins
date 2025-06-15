@@ -26,6 +26,13 @@ pipeline {
                 }
             }
         }
+        stage ("ssh action") {
+            steps{
+                script {
+                    dockerHelper.ssh_action(SSH_CREDENTIALS_ID, SSH_USERNAME, SSH_HOST)
+                }
+            }
+        }
     }
     post{
         always {
